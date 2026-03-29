@@ -20,12 +20,6 @@ const nextConfig = {
   // ── Compress responses ──
   compress: true,
 
-  // ── Experimental: enable Turbopack for faster local dev ──
-  // (stable in Next.js 15; remove if you hit compatibility issues)
-  experimental: {
-    turbo: {},
-  },
-
   // ── Custom response headers for security + perf ──
   async headers() {
     return [
