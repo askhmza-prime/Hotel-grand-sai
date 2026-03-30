@@ -64,61 +64,6 @@ function useInView(threshold = 0.12) {
   return { ref, inView };
 }
 
-// ─── Gold floating particles (CSS only) ───
-function GoldParticles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    const p: Particle[] = Array.from({ length: 28 }, (_, i) => ({
-      id:       i,
-      left:     `${((i * 37 + 11) % 97)}%`,
-      top:      `${((i * 53 + 7)  % 95)}%`,
-      size:     `${2 + (i % 4)}px`,
-      delay:    `${(i * 0.4) % 6}s`,
-      duration: `${4 + (i % 5)}s`,
-    }));
-    setParticles(p);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className="absolute rounded-full"
-          style={{
-            left: p.left, top: p.top, width: p.size, height: p.size,
-            background: "radial-gradient(circle, #ffd700 0%, #D4AF77 60%, transparent 100%)",
-            animation: `floatGold ${p.duration} ${p.delay} ease-in-out infinite`,
-          }}
-        />
-      ))}
-      <style>{`
-        @keyframes floatGold {
-          0%   { transform: translateY(0)    scale(1);   opacity: 0; }
-          20%  { opacity: 0.7; }
-          50%  { transform: translateY(-22px) scale(1.3); opacity: 0.5; }
-          80%  { opacity: 0.2; }
-          100% { transform: translateY(-45px) scale(0.8); opacity: 0; }
-        }
-        @keyframes doorReveal {
-          0%   { clip-path: inset(0 50% 0 50%); opacity: 0; }
-          60%  { opacity: 1; }
-          100% { clip-path: inset(0 0% 0 0%);  opacity: 1; }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(32px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes goldShimmer {
-          0%, 100% { background-position: 0%   50%; }
-          50%       { background-position: 100% 50%; }
-        }
-      `}</style>
-    </div>
-  );
-}
-
 // ─── Hero ───
 function Hero() {
   const [revealed, setRevealed] = useState(false);
@@ -133,8 +78,6 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0a0a]/80 via-[#2d0d0d]/60 to-[#1a0a0a]/90" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(26,10,10,0.8)_100%)]" />
       </div>
-
-      <GoldParticles />
 
       {/* Decorative lines */}
       <div className="absolute top-1/4    left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF77]/30 to-transparent" />
