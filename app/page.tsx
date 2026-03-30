@@ -418,10 +418,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <RoomsSection />
-      <BanquetsSection />
-      <RestaurantSection />
-      <WhyUsSection />
-      <MapSection />
       <Footer />
     </main>
   );
